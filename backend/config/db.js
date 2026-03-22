@@ -1,4 +1,3 @@
-// config/db.js
 const mysql = require("mysql2/promise");
 
 const pool = mysql.createPool({
@@ -11,6 +10,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   timezone: "+00:00",
+  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
 async function testConnection() {
